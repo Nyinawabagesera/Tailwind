@@ -19,11 +19,21 @@
     <div class=" w-full flex justify-center items-center">
     <div class=" w-[90%] m-auto">
     <p class=" mt-4" for="text">Name of priza</p>
-    <input class="py-7 rounded-lg w-full border-2 border-solid">
+    <input id="input" class="py-7 rounded-lg w-full border-2 border-solid">
     </div>
     </div>
     <div class="flex justify-end items-center h-10 px-8 mt-10 mr-8 py-10">
-        <p><p class="text-white rounded-lg py-5 px-20 bg-[#FF6A16] "> Add todo</p></p>
+        <button id="btn" class="text-white rounded-lg py-5 px-20 bg-[#FF6A16] "> Add todo</button>
     </div>
 </body>
+<script>
+const input = document.getElementById('input')
+const btn = document.getElementById('btn')
+
+let todo = []
+btn.addEventListener('click', () =>{
+  todo.push(input.value)  
+  console.log(todo);
+})
+</script>
 </html>
