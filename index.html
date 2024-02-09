@@ -1,62 +1,75 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Dog Generator</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #dog {
+            width: 30%;
+            height: 300px;
+            object-fit: cover; 
+            border-radius: 10px;
+        }
+
+        #btn {
+            width: 30%;
+            padding: 10px; 
+            background-color: brown;
+            color: white;
+            border: none; 
+            cursor: pointer;
+            border-radius: 5px; 
+            margin-top: 10px;
+        }
+
+        .dv {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+        }
+    </style>
 </head>
 <body>
-    <div class="flex items-center justify-between bg-[#181451] h-28 px-8  ">
-        <div><img class="w-[100px] " src="./imgs/icon.png" alt=""></div>
-        <div class="">
-          <a href="index1.html">
-          <p class="text-white rounded-lg py-7 px-10 bg-[#FF6A16] "><strong class="text-black">+</strong> Add todo</p>
-          </a>
-        </div>
-    </div>
-    <div class="m-auto flex flex-col items-center mt-4 justify-center">
-      <div class= "bg-gray-100 border-2 my-5 border-solid w-[90%] flex items-center justify-between py-5">
-      <div class="flex pl-7 gap-5 ">
-        <input class="" type="checkbox">
-        <p>Chicken Pizza</p>
-      </div>
-      <div class="flex pr-7 gap-5">
-        <p class="text-green-500"><i class="fa fa-check" aria-hidden="true"></i></p>
-        <p class="text-red-600"><i class="fa fa-trash" aria-hidden="true"></i></p>
-      </div>
-    </div>
-    <div class= "bg-gray-100 border-2 my-5 border-solid w-[90%] flex items-center justify-between py-5">
-      <div class="flex pl-7 gap-5 ">
-        <input class="" type="checkbox">
-        <p>Chicken Pizza</p>
-      </div>
-      <div class="flex pr-7 gap-5">
-        <p class="text-green-500"><i class="fa fa-check" aria-hidden="true"></i></p>
-        <p class="text-red-600"><i class="fa fa-trash" aria-hidden="true"></i></p>
-      </div>
-    </div>
-    <div class= "bg-gray-100 border-2 my-5 border-solid w-[90%] flex items-center justify-between py-5">
-      <div class="flex pl-7 gap-5 ">
-        <input class="" type="checkbox">
-        <p>Chicken Pizza</p>
-      </div>
-      <div class="flex pr-7 gap-5">
-        <p class="text-green-500"><i class="fa fa-check" aria-hidden="true"></i></p>
-        <p class="text-red-600"><i class="fa fa-trash" aria-hidden="true"></i></p>
-      </div>
-    </div>
-    <div class= "bg-gray-100 border-2 my-5 border-solid w-[90%] flex items-center justify-between py-5">
-      <div class="flex pl-7 gap-5 ">
-        <input class="" type="checkbox">
-        <p>Chicken Pizza</p>
-      </div>
-      <div class="flex pr-7 gap-5">
-        <p class="text-green-500"><i class="fa fa-check" aria-hidden="true"></i></p>
-        <p class="text-red-600"><i class="fa fa-trash" aria-hidden="true"></i></p>
-      </div>
-    </div>
-    </div>
+  <div class="dv" id="div"></div>
+    <img id="dog" src="" alt="Random Dog">
+    <button id="btn">Get Dog</button>
+  
+
+    <script>
+        const div = document.getElementById('div')
+        const btn = document.getElementById('btn');
+        const dog = document.getElementById('dog');
+        let Url = ''
+
+        function getDog() {
+            fetch('https://random.dog/woof.json')
+                .then(response => response.json())
+                .then(data =>{
+                Url = data.url
+                dog.src = Url
+                  })
+                .catch(err => console.log(err));
+        }
+
+        if (Url) {
+          dog.src = Url 
+        } else {
+          getDog()
+        }
+        btn.addEventListener('click', getDog);
+        div.appendChild(dog)
+        div.appendChild(btn)
+    </script>
 </body>
 </html>
